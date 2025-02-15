@@ -8,6 +8,9 @@ function agregarAmigo(nombre){
 
 
 
+function limpiarCaja(){
+    document.getElementById("amigo").value = "";
+}
 
 
 
