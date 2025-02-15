@@ -14,13 +14,21 @@ function agregarAmigo(){
         console.log(amigos);
     limpiarCaja();
     }
-
  }
 
+function actualizarLista(){
+    let listadoAmigos = document.getElementById("listaAmigos");
+    listadoAmigos.innerHTML = "";
+    for (let i = 0; i < amigos.length; i++){
+        listadoAmigos.innerHTML += `<li>${amigos[i]}</li>`;
+        console.log(amigos[i]);
+    }
+}
 
-
-
-
+function sortearAmigo(){
+    let amigoSorteado = amigos[Math.floor(Math.random() * amigos.length)];
+    document.getElementById("listaAmigos").innerHTML = amigoSorteado;
+}
 
 
 function limpiarCaja(){
