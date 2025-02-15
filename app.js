@@ -2,17 +2,24 @@
 let amigos = [];
 
 
-function agregarAmigo(nombre){
-    let amigos = document.getElementById("amigo").value;
-    console.log(amigos);
-
-    if(amigos == "" || amigos > 0){
+function agregarAmigo(){
+    let listaAmigos = document.getElementById("amigo").value;
+    console.log(listaAmigos);
+    
+    if(listaAmigos == "" || listaAmigos >= 0){
         alert("Por favor, inserte un nombre");
         limpiarCaja();
-} else {
-    limpiarCaja(); 
+    } else {
+        amigos.push(listaAmigos);
+        console.log(amigos);
+    limpiarCaja();
+    }
+
  }
- }
+
+
+
+
 
 
 
