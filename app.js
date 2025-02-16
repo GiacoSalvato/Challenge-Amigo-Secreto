@@ -28,7 +28,20 @@ function actualizarLista(){
 function sortearAmigo(){
     let amigoSorteado = amigos[Math.floor(Math.random() * amigos.length)];
     document.getElementById("listaAmigos").innerHTML = amigoSorteado;
+    if(amigos.length == 0){
+        alert("No hay amigos para sortear");
+    } else {
+        alert("El amigo sorteado es: " + amigoSorteado);
+    }
+    //sortear todos los participantes
+    if(amigos.includes(amigoSorteado)){
+        let index = amigos.indexOf(amigoSorteado);
+        amigos.splice(index, 1);
+    } 
+
 }
+
+
 
 
 function limpiarCaja(){
