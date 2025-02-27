@@ -15,6 +15,7 @@ let amigos = [];
 
     if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(nombre)) { // Verificamos si solo tiene letras
         agregarTextoElemento('h2', 'Ingrese un nombre válido (solo letras)');
+        limpiarCaja();
         return;
     }
 
