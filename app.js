@@ -3,22 +3,40 @@ let amigos = [];
 
 //función principal
 //agregar un amigo a la lista
-function agregarAmigo(){
-    let listaAmigos = document.getElementById("amigo").value;
-    console.log(listaAmigos);
+ function agregarAmigo() {
+    let nombre = document.getElementById("amigo").value.trim();
+    console.log(nombre);
 
-    if(listaAmigos == "" || listaAmigos >= 0){
+    if (nombre.trim() === "" || !isNaN(nombre)) { // Verificamos si esta vacío o con número
         agregarTextoElemento('h2', 'Ingrese un nombre de amigo válido');
         limpiarCaja();
-    } else {
-        agregarTextoElemento('h2', 'Digite el nombre de sus amigos');
-        amigos.push(listaAmigos);
-        console.log(amigos);
-        limpiarCaja();
-        actualizarLista();
+        return;
     }
+
+    if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(nombre)) { // Verificamos si solo tiene letras
+        agregarTextoElemento('h2', 'Ingrese un nombre válido (solo letras)');
+        return;
+    }
+
+    if (validarDuplicados(amigos, nombre)) { // Verificamos si ya existe el amigo
+        agregarTextoElemento('h2', 'Este amigo ya está en la lista');
+    } else {
+        amigos.push(nombre); // Agregamos el amigo a la lista
+        agregarTextoElemento('h2', 'Digite el nombre de sus amigos');
+    console.log(amigos);
+    }
+    limpiarCaja();
+    actualizarLista();
     return;
- }
+}
+
+
+//función para validar duplicados
+function validarDuplicados(listaAmigos , nombre) {
+    let nombreNormalizado = nombre.trim().toLowerCase();
+    return listaAmigos.some(amigo => amigo.toLowerCase() === nombreNormalizado);
+}
+
 
  //crear una lista visible de los participantes
 function actualizarLista(){
