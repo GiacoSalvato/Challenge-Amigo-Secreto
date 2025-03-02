@@ -14,7 +14,7 @@ manejarEnter();
         limpiarCaja();
         return;
     }
-
+    
     if (validarDuplicados(amigos, nombre)) { // Verificamos si ya existe el amigo
         agregarTextoElemento('h2', 'Este amigo ya está en la lista');
     } else {
