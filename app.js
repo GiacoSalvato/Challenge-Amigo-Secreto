@@ -8,17 +8,17 @@ manejarEnter();
  function agregarAmigo() {
     let nombre = document.getElementById("amigo").value.trim();
     console.log(nombre);
-// Verificamos si esta vacío o con número o con caracteres especiales
+//Verificamos si esta vacío o con número o con caracteres especiales
     if (nombre.trim() === "" || !isNaN(nombre) || !/^[a-zA-ZÀ-ÿ\s]+$/.test(nombre)) { 
         agregarTextoElemento('h2', 'Ingrese un nombre de amigo válido');
         limpiarCaja();
         return;
     }
-    
-    if (validarDuplicados(amigos, nombre)) { // Verificamos si ya existe el amigo
+
+    if (validarDuplicados(amigos, nombre)) { //Verificamos si ya existe el amigo
         agregarTextoElemento('h2', 'Este amigo ya está en la lista');
     } else {
-        amigos.push(nombre); // Agregamos el amigo a la lista
+        amigos.push(nombre); //Agregamos el nombre a la lista
         agregarTextoElemento('h2', 'Digite el nombre de sus amigos');
     console.log(amigos);
     }
@@ -57,7 +57,6 @@ function sortearAmigo(){
         enfocar();
         return;
     }
-    console.log(amigoSorteado);
     //sortear todos los participantes
     if(amigos.includes(amigoSorteado)){
         agregarTextoElemento('h2', 'Felicidades el amigo sorteado es: ' + amigoSorteado);
@@ -83,13 +82,13 @@ function limpiarCaja(){
     return;
 }
 
-// se agrega la función enfocar con ayuda de focus, para que el cursor esté dentro del input
+//función enfocar, para que el cursor esté dentro del input
 function enfocar () {
     document.getElementById('amigo').focus();
     return;
 }
 
-//función para manejar el evento de presionar la tecla Enter
+//función para presionar la tecla Enter
 function manejarEnter(){
     document.getElementById("amigo").addEventListener("keyup", function(event){
         if(event.key === "Enter"){
