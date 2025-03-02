@@ -1,33 +1,30 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 let amigos = [];
+enfocar();
+manejarEnter();
 
 //función principal
 //agregar un amigo a la lista
  function agregarAmigo() {
     let nombre = document.getElementById("amigo").value.trim();
     console.log(nombre);
-
-    if (nombre.trim() === "" || !isNaN(nombre)) { // Verificamos si esta vacío o con número
+//Verificamos si esta vacío o con número o con caracteres especiales
+    if (nombre.trim() === "" || !isNaN(nombre) || !/^[a-zA-ZÀ-ÿ\s]+$/.test(nombre)) { 
         agregarTextoElemento('h2', 'Ingrese un nombre de amigo válido');
         limpiarCaja();
         return;
     }
 
-    if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(nombre)) { // Verificamos si solo tiene letras
-        agregarTextoElemento('h2', 'Ingrese un nombre válido (solo letras)');
-        limpiarCaja();
-        return;
-    }
-
-    if (validarDuplicados(amigos, nombre)) { // Verificamos si ya existe el amigo
+    if (validarDuplicados(amigos, nombre)) { //Verificamos si ya existe el amigo
         agregarTextoElemento('h2', 'Este amigo ya está en la lista');
     } else {
-        amigos.push(nombre); // Agregamos el amigo a la lista
+        amigos.push(nombre); //Agregamos el nombre a la lista
         agregarTextoElemento('h2', 'Digite el nombre de sus amigos');
     console.log(amigos);
     }
     limpiarCaja();
     actualizarLista();
+    enfocar();
     return;
 }
 
@@ -57,9 +54,9 @@ function sortearAmigo(){
     if(amigos.length == 0){
         agregarTextoElemento('h2', 'No hay amigos para sortear');
         actualizarLista();
+        enfocar();
         return;
     }
-    console.log(amigoSorteado);
     //sortear todos los participantes
     if(amigos.includes(amigoSorteado)){
         agregarTextoElemento('h2', 'Felicidades el amigo sorteado es: ' + amigoSorteado);
@@ -85,6 +82,20 @@ function limpiarCaja(){
     return;
 }
 
+//función enfocar, para que el cursor esté dentro del input
+function enfocar () {
+    document.getElementById('amigo').focus();
+    return;
+}
 
+//función para presionar la tecla Enter
+function manejarEnter(){
+    document.getElementById("amigo").addEventListener("keyup", function(event){
+        if(event.key === "Enter"){
+            agregarAmigo();
+        }
+    });
+    return;
+}
 
 
